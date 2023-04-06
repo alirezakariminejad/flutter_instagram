@@ -12,6 +12,19 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: ColorConstants.pink,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(15.0),
+              ),
+            ),
+            textStyle: TextStyle(fontFamily: 'GB', fontSize: 16.0)
+          ),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       home: SwitchAccountScreen(),
     );
