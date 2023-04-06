@@ -71,7 +71,8 @@ class SwitchAccountScreen extends StatelessWidget {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(15.0)),
                                 image: DecorationImage(
-                                  image: AssetImage('assets/images/profile2.jpg'),
+                                  image:
+                                      AssetImage('assets/images/profile2.jpg'),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -86,20 +87,22 @@ class SwitchAccountScreen extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: 20.0),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: ColorConstants.pink,
-                                  minimumSize: Size(130.0, 45.0),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(15.0)))),
-                              onPressed: () {},
-                              child: Text('Confirm',
+                            SizedBox(
+                              width: 130.0,
+                              height: 45.0,
+                              child: ElevatedButton(
+                                style:
+                                    Theme.of(context).elevatedButtonTheme.style,
+                                onPressed: () {},
+                                child: Text(
+                                  'Confirm',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'GB',
                                     fontSize: 16.0,
-                                  )),
+                                  ),
+                                ),
+                              ),
                             ),
                             SizedBox(height: 20.0),
                             Text(
