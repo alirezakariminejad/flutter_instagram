@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone_app/constants/color_constants.dart';
 
@@ -39,51 +41,78 @@ class SwitchAccountScreen extends StatelessWidget {
               child: Stack(
                 alignment: AlignmentDirectional.center,
                 children: [
-                  Container(
-                    width: 340.0,
-                    height: 350.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color.fromRGBO(255, 255, 255, 0.7),
-                          Color.fromRGBO(255, 255, 255, 0.2)
-                        ],
+                  ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(
+                        sigmaX: 20.0,
+                        sigmaY: 20.0,
                       ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 130.0,
-                          height: 130.0,
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15.0)),
-                            image: DecorationImage(
-                              image: AssetImage('assets/images/profile2.jpg'),
-                              fit: BoxFit.cover,
-                            ),
+                      child: Container(
+                        width: 340.0,
+                        height: 350.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Color.fromRGBO(255, 255, 255, 0.7),
+                              Color.fromRGBO(255, 255, 255, 0.2)
+                            ],
                           ),
                         ),
-                        SizedBox(height: 20.0),
-                        Text(
-                          'AlirezaKariminejad',
-                          style: TextStyle(color: Colors.white),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 130.0,
+                              height: 130.0,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15.0)),
+                                image: DecorationImage(
+                                  image: AssetImage('assets/images/profile2.jpg'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 20.0),
+                            Text(
+                              'AlirezaKariminejad',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'GB',
+                                fontSize: 16.0,
+                              ),
+                            ),
+                            SizedBox(height: 20.0),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: ColorConstants.pink,
+                                  minimumSize: Size(130.0, 45.0),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(15.0)))),
+                              onPressed: () {},
+                              child: Text('Confirm',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'GB',
+                                    fontSize: 16.0,
+                                  )),
+                            ),
+                            SizedBox(height: 20.0),
+                            Text(
+                              'Switch Account',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'GB',
+                                fontSize: 16.0,
+                              ),
+                            ),
+                          ],
                         ),
-                        SizedBox(height: 20.0),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text('data'),
-                        ),
-                        SizedBox(height: 20.0),
-                        Text(
-                          'Switch Account',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
+                      ),
                     ),
                   )
                 ],
