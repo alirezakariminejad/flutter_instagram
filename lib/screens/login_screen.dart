@@ -66,6 +66,79 @@ class LoginScreen extends StatelessWidget {
                 topRight: Radius.circular(15.0),
               ),
             ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Sign in to',
+                      style: TextStyle(
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                          fontSize: 20.0,
+                          fontFamily: 'GB'),
+                    ),
+                    SizedBox(width: 5.0),
+                    Image(
+                      image: AssetImage('assets/images/mood.png'),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 30.0),
+                Column(
+                  children: [
+                    SizedBox(
+                      width: 130.0,
+                      height: 45.0,
+                      child: ElevatedButton(
+                        // style: Theme.of(context).elevatedButtonTheme.style,
+                        onPressed: () {},
+                        child: Text(
+                          'Confirm',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'GB',
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 60.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'don\'t have an account?',
+                      style: TextStyle(
+                        color: Color.fromRGBO(255, 255, 255, 0.5),
+                        fontSize: 16.0,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                      child: Text(
+                        '/',
+                        style: TextStyle(
+                          color: Color.fromRGBO(255, 255, 255, 0.5),
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Sign up',
+                      style: TextStyle(
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ],
