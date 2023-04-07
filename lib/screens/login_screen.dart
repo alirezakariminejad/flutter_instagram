@@ -1,8 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone_app/constants/color_constants.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  late FocusNode emailFocusNode;
+  late FocusNode passwordFocusNode;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    emailFocusNode = FocusNode();
+    passwordFocusNode = FocusNode();
+    emailFocusNode.addListener(() {
+      setState(() {});
+    });
+    passwordFocusNode.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    emailFocusNode.dispose();
+    passwordFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,9 +105,10 @@ class LoginScreen extends StatelessWidget {
                     Text(
                       'Sign in to',
                       style: TextStyle(
-                          color: Color.fromRGBO(255, 255, 255, 1),
-                          fontSize: 20.0,
-                          fontFamily: 'GB'),
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                        fontSize: 20.0,
+                        fontFamily: 'GB',
+                      ),
                     ),
                     SizedBox(width: 5.0),
                     Image(
@@ -89,6 +119,86 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: 30.0),
                 Column(
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 45.0),
+                      child: TextField(
+                        focusNode: emailFocusNode,
+                        style: TextStyle(
+                          color: ColorConstants.white,
+                          fontSize: 16.0,
+                        ),
+                        decoration: InputDecoration(
+                          labelText: 'Email',
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 25.0,
+                            vertical: 15.0,
+                          ),
+                          labelStyle: TextStyle(
+                            color: emailFocusNode.hasFocus
+                                ? ColorConstants.pink
+                                : ColorConstants.white,
+                            fontSize: 18.0,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15.0)),
+                            borderSide: BorderSide(
+                              color: ColorConstants.white,
+                              width: 3.0,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15.0)),
+                            borderSide: BorderSide(
+                              color: ColorConstants.pink,
+                              width: 3.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 45.0),
+                      child: TextField(
+                        focusNode: passwordFocusNode,
+                        style: TextStyle(
+                          color: ColorConstants.white,
+                          fontSize: 16.0,
+                        ),
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 25.0,
+                            vertical: 15.0,
+                          ),
+                          labelStyle: TextStyle(
+                            color: passwordFocusNode.hasFocus
+                                ? ColorConstants.pink
+                                : ColorConstants.white,
+                            fontSize: 18.0,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15.0)),
+                            borderSide: BorderSide(
+                              color: ColorConstants.white,
+                              width: 3.0,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15.0)),
+                            borderSide: BorderSide(
+                              color: ColorConstants.pink,
+                              width: 3.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20.0),
                     SizedBox(
                       width: 130.0,
                       height: 45.0,
@@ -96,7 +206,7 @@ class LoginScreen extends StatelessWidget {
                         // style: Theme.of(context).elevatedButtonTheme.style,
                         onPressed: () {},
                         child: Text(
-                          'Confirm',
+                          'Sign in',
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'GB',
