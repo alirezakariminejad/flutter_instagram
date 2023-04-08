@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone_app/constants/color_constants.dart';
+import 'package:flutter_instagram_clone_app/screens/home_screen.dart';
 import 'package:flutter_instagram_clone_app/screens/login_screen.dart';
 import 'package:flutter_instagram_clone_app/screens/switch_account_screen.dart';
 
@@ -27,7 +28,7 @@ class Application extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }
