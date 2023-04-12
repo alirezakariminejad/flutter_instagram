@@ -27,14 +27,52 @@ class HomeScreen extends StatelessWidget {
       ),
       backgroundColor: ColorConstants.black,
       body: SafeArea(
-        child: _getPostList(),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return Container(
+                        height: 300.0,
+                        child: Text('data'),
+                      );
+                    },
+                  );
+                },
+                child: Text('Open bottomSheet'),
+              ),
+              Container(
+                height: 120.0,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 20,
+                  itemBuilder: (BuildContext context, int index) {
+                    return index == 0
+                        ? _getAddStoryBox()
+                        : _getAddImageStoryBox(
+                            hasMargin: true,
+                            horizontalSpacing: 8.0,
+                            verticalSpacing: 12.0,
+                          );
+                  },
+                ),
+              ),
+              _getPostList(),
+            ],
+          ),
+        ),
       ),
     );
   }
 
   Widget _getPostList() {
     return ListView.builder(
-      itemCount: 10,
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: 5,
       itemBuilder: (BuildContext context, int index) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -180,51 +218,89 @@ class HomeScreen extends StatelessWidget {
     double strokeWidth = 2.0,
     double width = 56.0,
     double height = 56.0,
+    bool hasMargin = false,
+    double horizontalSpacing = 0.0,
+    double verticalSpacing = 0.0,
     List<double> dashPattern = const <double>[30, 5],
   }) {
-    return DottedBorder(
-      borderType: BorderType.RRect,
-      radius: Radius.circular(radius),
-      padding: EdgeInsets.all(padding),
-      color: ColorConstants.pink,
-      strokeWidth: strokeWidth,
-      dashPattern: dashPattern,
-      child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(15)),
-        child: Container(
-          width: width,
-          height: height,
-          color: Colors.amber,
-          child: Image.asset('assets/images/profile.png'),
-        ),
+    return SizedBox(
+      width: 80.0,
+      child: Column(
+        children: [
+          Container(
+            margin: hasMargin
+                ? EdgeInsets.symmetric(
+                    horizontal: horizontalSpacing, vertical: verticalSpacing)
+                : EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
+            child: DottedBorder(
+              borderType: BorderType.RRect,
+              radius: Radius.circular(radius),
+              padding: EdgeInsets.all(padding),
+              color: ColorConstants.pink,
+              strokeWidth: strokeWidth,
+              dashPattern: dashPattern,
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                child: Container(
+                  width: width,
+                  height: height,
+                  color: Colors.amber,
+                  child: Image.asset('assets/images/profile.png'),
+                ),
+              ),
+            ),
+          ),
+          Text(
+            'alirezakariminejad',
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: ColorConstants.white,
+              fontFamily: 'GM',
+              fontSize: 12.0,
+            ),
+          )
+        ],
       ),
     );
   }
 
   Widget _getAddStoryBox() {
-    return Container(
-      width: 64.0,
-      height: 64.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(17.0),
-        ),
-        color: ColorConstants.white,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(2.0),
-        child: Container(
+    return Column(
+      children: [
+        Container(
           width: 64.0,
           height: 64.0,
+          margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(
-              Radius.circular(15.0),
+              Radius.circular(17.0),
             ),
-            color: ColorConstants.black,
+            color: ColorConstants.white,
           ),
-          child: Image.asset('assets/images/icon_plus.png'),
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Container(
+              width: 64.0,
+              height: 64.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15.0),
+                ),
+                color: ColorConstants.black,
+              ),
+              child: Image.asset('assets/images/icon_plus.png'),
+            ),
+          ),
         ),
-      ),
+        Text(
+          'Your Story',
+          style: TextStyle(
+            color: ColorConstants.white,
+            fontFamily: 'GM',
+            fontSize: 12.0,
+          ),
+        )
+      ],
     );
   }
 }
