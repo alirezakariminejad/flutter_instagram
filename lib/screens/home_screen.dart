@@ -25,45 +25,81 @@ class HomeScreen extends StatelessWidget {
       ),
       backgroundColor: ColorConstants.black,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _headOfPost(),
+            Container(
+              // width: MediaQuery.of(context).size.width,
+              width: 395.0,
+              height: 427.0,
+              child: Stack(
+                alignment: AlignmentDirectional.topCenter,
                 children: [
-                  _getAddImageStoryBox(
-                    width: 36.0,
-                    height: 36.0,
-                    dashPattern: [15, 5],
+                  Image.asset('assets/images/post_cover.png'),
+                  Positioned(
+                    right: 15.0,
+                    top: 15.0,
+                    child: Image.asset('assets/images/icon_video.png'),
                   ),
-                  SizedBox(width: 10.0),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'alirezakariminejad',
-                        style: TextStyle(
-                            color: ColorConstants.white,
-                            fontFamily: 'GM',
-                            fontSize: 16.0),
+                  Positioned(
+                    bottom: 0,
+                    child: Container(
+                      width: 340.0,
+                      height: 46.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        // color: ColorConstants.white,
                       ),
-                      Text(
-                        'علیرضا کریمی نژاد برنامه نویس موبایل',
-                        style: TextStyle(
-                            color: ColorConstants.white,
-                            fontFamily: 'SM',
-                            fontSize: 16.0),
-                      ),
-                    ],
+                    ),
                   )
                 ],
               ),
-              Image.asset('assets/images/icon_menu.png')
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _headOfPost() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              _getAddImageStoryBox(
+                width: 36.0,
+                height: 36.0,
+                dashPattern: [15, 5],
+              ),
+              SizedBox(width: 10.0),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'alirezakariminejad',
+                    style: TextStyle(
+                        color: ColorConstants.white,
+                        fontFamily: 'GM',
+                        fontSize: 16.0),
+                  ),
+                  Text(
+                    'علیرضا کریمی نژاد برنامه نویس موبایل',
+                    style: TextStyle(
+                        color: ColorConstants.white,
+                        fontFamily: 'SM',
+                        fontSize: 16.0),
+                  ),
+                ],
+              )
             ],
           ),
-        ),
+          Image.asset('assets/images/icon_menu.png')
+        ],
       ),
     );
   }
