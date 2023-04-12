@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone_app/constants/color_constants.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -25,39 +27,107 @@ class HomeScreen extends StatelessWidget {
       ),
       backgroundColor: ColorConstants.black,
       body: SafeArea(
-        child: Column(
+        child: _getPostList(),
+      ),
+    );
+  }
+
+  Widget _getPostList() {
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (BuildContext context, int index) {
+        return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(height: 15.0),
             _headOfPost(),
-            Container(
-              // width: MediaQuery.of(context).size.width,
-              width: 395.0,
-              height: 427.0,
-              child: Stack(
-                alignment: AlignmentDirectional.topCenter,
-                children: [
-                  Image.asset('assets/images/post_cover.png'),
-                  Positioned(
-                    right: 15.0,
-                    top: 15.0,
-                    child: Image.asset('assets/images/icon_video.png'),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    child: Container(
-                      width: 340.0,
-                      height: 46.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        // color: ColorConstants.white,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            )
+            SizedBox(height: 15.0),
+            _bodyOfPost(),
+            SizedBox(height: 30.0),
           ],
-        ),
+        );
+      },
+    );
+  }
+
+  Container _bodyOfPost() {
+    return Container(
+      // width: MediaQuery.of(context).size.width,
+      width: 395.0,
+      height: 427.0,
+      child: Stack(
+        alignment: AlignmentDirectional.topCenter,
+        children: [
+          Image.asset('assets/images/post_cover.png'),
+          Positioned(
+            right: 15.0,
+            top: 15.0,
+            child: Image.asset('assets/images/icon_video.png'),
+          ),
+          Positioned(
+            bottom: 0,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: 20,
+                  sigmaY: 20,
+                ),
+                child: Container(
+                  width: 340.0,
+                  height: 46.0,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      // color: ColorConstants.white,
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.topRight,
+                          colors: [
+                            Color.fromRGBO(255, 255, 255, 0.5),
+                            Color.fromRGBO(255, 255, 255, 0.2),
+                          ])),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/images/icon_hart.png'),
+                          SizedBox(width: 5.0),
+                          Text(
+                            '2.6K',
+                            style: TextStyle(
+                              color: ColorConstants.white,
+                              fontFamily: 'GB',
+                              fontSize: 14.0,
+                            ),
+                          )
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/images/icon_comments.png'),
+                          SizedBox(width: 5.0),
+                          Text(
+                            '1.5K',
+                            style: TextStyle(
+                              color: ColorConstants.white,
+                              fontFamily: 'GB',
+                              fontSize: 14.0,
+                            ),
+                          )
+                        ],
+                      ),
+                      Image.asset('assets/images/icon_share.png'),
+                      Image.asset('assets/images/icon_save.png'),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -104,7 +174,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  DottedBorder _getAddImageStoryBox({
+  Widget _getAddImageStoryBox({
     double radius = 17.0,
     double padding = 4.0,
     double strokeWidth = 2.0,
