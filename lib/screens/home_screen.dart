@@ -28,23 +28,35 @@ class HomeScreen extends StatelessWidget {
       ),
       backgroundColor: ColorConstants.black,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ElevatedButton(
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: ElevatedButton(
                 onPressed: () {
                   showModalBottomSheet(
                     barrierColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
+                    isScrollControlled: true,
                     context: context,
                     builder: (context) {
-                      return ShareBottomSheet();
+                      return DraggableScrollableSheet(
+                        initialChildSize: 0.4,
+                        minChildSize: 0.2,
+                        maxChildSize: 0.7,
+                        builder: (context, scrollController) {
+                          return ShareBottomSheet(
+                            scrollController: scrollController,
+                          );
+                        },
+                      );
                     },
                   );
                 },
                 child: Text('Open bottomSheet'),
               ),
-              Container(
+            ),
+            SliverToBoxAdapter(
+              child: Container(
                 height: 120.0,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -60,9 +72,25 @@ class HomeScreen extends StatelessWidget {
                   },
                 ),
               ),
-              _getPostList(),
-            ],
-          ),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: 5,
+                (context, index) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 15.0),
+                      _headOfPost(),
+                      SizedBox(height: 15.0),
+                      _bodyOfPost(),
+                      SizedBox(height: 30.0),
+                    ],
+                  );
+                },
+              ),
+            )
+          ],
         ),
       ),
     );
