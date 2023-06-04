@@ -3,7 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class ShareBottomSheet extends StatelessWidget {
-  const ShareBottomSheet({super.key});
+  const ShareBottomSheet({this.scrollController, super.key});
+  final ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -41,19 +42,40 @@ class ShareBottomSheet extends StatelessWidget {
     );
   }
 
-  GridView _getShareContent() {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,
-        mainAxisSpacing: 20.0,
-        crossAxisSpacing: 30.0,
-      ),
-      itemCount: 36,
-      itemBuilder: (BuildContext context, int index) {
-        return Container(
-          color: Colors.amber,
-        );
-      },
+  Widget _getShareContent() {
+    return CustomScrollView(
+      controller: scrollController,
+      slivers: [
+        SliverGrid(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              return Container(
+                color: Colors.amber,
+              );
+            },
+          ),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            mainAxisSpacing: 20.0,
+            crossAxisSpacing: 30.0,
+            crossAxisCount: 4,
+          ),
+        ),
+      ],
     );
+
+    // return GridView.builder(
+    //   controller: scrollController,
+    //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+    //     crossAxisCount: 4,
+    //     mainAxisSpacing: 20.0,
+    //     crossAxisSpacing: 30.0,
+    //   ),
+    //   itemCount: 100,
+    //   itemBuilder: (BuildContext context, int index) {
+    //     return Container(
+    //       color: Colors.amber,
+    //     );
+    //   },
+    // );
   }
 }
