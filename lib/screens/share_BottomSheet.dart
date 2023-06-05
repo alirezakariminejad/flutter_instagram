@@ -91,7 +91,7 @@ class ShareBottomSheet extends StatelessWidget {
                 ),
                 child: Padding(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                      EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
                   child: Row(
                     children: [
                       Image.asset('assets/images/icon_search.png'),
@@ -99,6 +99,14 @@ class ShareBottomSheet extends StatelessWidget {
                       Expanded(
                         child: TextField(
                           style: TextStyle(fontSize: 20.0),
+                          decoration: InputDecoration(
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            hintText: 'Search',
+                            hintStyle: TextStyle(
+                              color: ColorConstants.white,
+                            ),
+                          ),
                         ),
                       ),
                     ],
